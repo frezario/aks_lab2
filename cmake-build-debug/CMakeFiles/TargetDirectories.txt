@@ -1,0 +1,3 @@
+C:/Study/AKS/lab2/cmake-build-debug/CMakeFiles/integrate_serial.dir
+C:/Study/AKS/lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Study/AKS/lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

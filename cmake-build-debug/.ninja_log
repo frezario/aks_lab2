@@ -1,0 +1,16 @@
+# ninja log v5
+19	218	6990645710808045	CMakeFiles/integrate_serial.dir/integrals.cpp.obj	96e35cd6c637712d
+1	3702	6990645745694944	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
+3707	4231	6990645750815102	integrate_serial.exe	a87cca94f9c4009d
+14	4100	6990646366310838	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
+4102	4517	6990646370394335	integrate_serial.exe	a87cca94f9c4009d
+9	3730	6990646747864461	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
+3732	4111	6990646751584292	integrate_serial.exe	a87cca94f9c4009d
+8	2740	6990648075561662	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
+2766	3118	6990648079392424	integrate_serial.exe	a87cca94f9c4009d
+6	2660	6990648761563741	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
+2661	2981	6990648764746132	integrate_serial.exe	a87cca94f9c4009d
+9	3172	6990650619266830	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
+3173	3772	6990650625245801	integrate_serial.exe	a87cca94f9c4009d
+6	5471	6990659964522314	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
+5473	6036	6990659970134488	integrate_serial.exe	a87cca94f9c4009d
