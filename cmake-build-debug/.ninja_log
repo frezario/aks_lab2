@@ -1,7 +1,0 @@
-# ninja log v5
-14	4200	6991134675410150	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
-19	218	6990645710808045	CMakeFiles/integrate_serial.dir/integrals.cpp.obj	96e35cd6c637712d
-6	396	6991134748805962	integrate_serial.exe	f9bfd31d2828c1a1
-3	758	6991134772711074	build.ninja	dd760b437a1bd33f
-8	2949	6991139860367438	CMakeFiles/integrate_serial.dir/main.cpp.obj	734d8a753044e5c2
-2950	3396	6991139864787983	integrate_serial.exe	f9bfd31d2828c1a1
