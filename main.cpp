@@ -11,6 +11,9 @@
 #include <array>
 #include "integrals.h"
 
+/*
+ * Namespace for time measurement
+ * */
 namespace time_functions {
     inline std::chrono::high_resolution_clock::time_point get_current_time_fenced() {
         std::atomic_thread_fence(std::memory_order_seq_cst);
@@ -25,6 +28,9 @@ namespace time_functions {
     }
 }
 
+/*
+ * Namespace of functions with two parameters
+ * */
 namespace functions {
     double f1(double x1, double x2) {
         double sum = 0.0;
@@ -63,17 +69,24 @@ namespace functions {
     }
 
     double f4(double x1, double x2) {
-        double a = 20;
-        double b = 0.2;
-        double c = 2 * std::numbers::pi;
-        auto first_term = -a * exp(-b * sqrt(0.5 * (x1 * x1, x2 * x2)));
-        auto second_term = -exp(0.5 * (cos(c * x1) + cos(c * x2)));
-        return first_term + second_term + a + exp(1);
+        size_t m = 5;
+        auto sum = [m](double x) {
+            double s = 0;
+            for (size_t i = 0; i <= m; i++) {
+                s += (double)i * cos(((double)i + 1) * x + 1);
+            }
+            return s;
+        };
+        return -sum(x1)*sum(x2);
     }
 
 }
 
-
+/*
+ * A function to read a config file.
+ * Reads only lines with '=' in them.
+ * Returns a vector of nonempty, significant strings.
+ * */
 std::vector<std::string> file_reader(std::ifstream &filestream) {
     std::vector<std::string> result;
     std::string word;
@@ -86,7 +99,11 @@ std::vector<std::string> file_reader(std::ifstream &filestream) {
     return result;
 }
 
-// gets configuration parameters from file given
+/*
+ * Gets configuration settings from config file and returns a map
+ * where keys are config parameters, and values are the
+ * corresponding values of config parameters.
+ * */
 std::map<std::string, double> get_config(const std::string &file_name) {
     std::ifstream config_file(file_name);
     if (!config_file.is_open()) {
@@ -220,7 +237,8 @@ int main(int argc, char **argv) {
 
     auto start_time_point = time_functions::get_current_time_fenced();
 
-    auto res = integrals::calculate_integral(functions[num - 1], config["abs_err"], config["rel_err"], config["x_start"],
+    auto res = integrals::calculate_integral(functions[num - 1], config["abs_err"], config["rel_err"],
+                                             config["x_start"],
                                              config["x_end"],
                                              config["y_start"], config["y_end"], (size_t) config["init_steps_x"],
                                              (size_t) config["init_steps_y"], (size_t) config["max_iter"]);

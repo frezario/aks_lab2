@@ -55,12 +55,6 @@ build CMakeFiles/integrate_serial.dir/main.cpp.obj: CXX_COMPILER__integrate_seri
   OBJECT_DIR = CMakeFiles\integrate_serial.dir
   OBJECT_FILE_DIR = CMakeFiles\integrate_serial.dir
 
-build CMakeFiles/integrate_serial.dir/integrals.cpp.obj: CXX_COMPILER__integrate_serial_Debug C$:/Study/AKS/lab2/integrals.cpp || cmake_object_order_depends_target_integrate_serial
-  DEP_FILE = CMakeFiles\integrate_serial.dir\integrals.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++20
-  OBJECT_DIR = CMakeFiles\integrate_serial.dir
-  OBJECT_FILE_DIR = CMakeFiles\integrate_serial.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target integrate_serial
@@ -69,7 +63,7 @@ build CMakeFiles/integrate_serial.dir/integrals.cpp.obj: CXX_COMPILER__integrate
 #############################################
 # Link the executable integrate_serial.exe
 
-build integrate_serial.exe: CXX_EXECUTABLE_LINKER__integrate_serial_Debug CMakeFiles/integrate_serial.dir/main.cpp.obj CMakeFiles/integrate_serial.dir/integrals.cpp.obj
+build integrate_serial.exe: CXX_EXECUTABLE_LINKER__integrate_serial_Debug CMakeFiles/integrate_serial.dir/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\integrate_serial.dir
