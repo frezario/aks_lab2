@@ -62,7 +62,6 @@ namespace integrals {
             auto third = calculate_riemann_sum(function, x_start, x_end, y_start, y_end,
                                                steps_x, steps_y, delta_x / 2, delta_y / 2);
             second_riemann_sum = 0.25 * (first_riemann_sum + first + second + third);
-//            std::cout << first_riemann_sum << " " << second_riemann_sum << std::endl;
             steps_x *= 2;
             steps_y *= 2;
         }
