@@ -5,7 +5,7 @@ from itertools import combinations
 
 
 def run_executable(func):
-    cmd = ["integrate_serial", func, f"func{func}.cfg"]
+    cmd = ["./integrate_serial", func, f"func{func}.cfg"]
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
     stdout = result.stdout.decode("utf-8")
     stderr = result.stderr.decode("utf-8")

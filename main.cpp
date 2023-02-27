@@ -3,7 +3,7 @@
 #include <exception>
 #include <functional>
 #include <cmath>
-#include <numbers>
+//#include <numbers>
 #include <fstream>
 #include <sstream>
 #include <chrono>
@@ -32,6 +32,9 @@ namespace time_functions {
  * Namespace of functions with two parameters
  * */
 namespace functions {
+
+    constexpr double pi = 3.14159265359;
+
     double f1(double x1, double x2) {
         double sum = 0.0;
         for (int i = -2; i <= 2; i++) {
@@ -46,7 +49,7 @@ namespace functions {
     double f2(double x1, double x2) {
         double a = 20;
         double b = 0.2;
-        double c = 2 * std::numbers::pi;
+        double c = 2 * pi;
         auto first_term = -a * exp(-b * sqrt(0.5 * (x1 * x1 + x2 * x2)));
         auto second_term = -exp(0.5 * (cos(c * x1) + cos(c * x2)));
         return first_term + second_term + a + exp(1);
@@ -61,8 +64,8 @@ namespace functions {
         double sum = 0;
         for (size_t i = 0; i != m; i++) {
             auto pattern = (x1 - a1[i]) * (x1 - a1[i]) + (x2 - a2[i]) * (x2 - a2[i]);
-            auto first_factor = c[i] * exp(-1 / std::numbers::pi * pattern);
-            auto second_factor = cos(std::numbers::pi * pattern);
+            auto first_factor = c[i] * exp(-1 / pi * pattern);
+            auto second_factor = cos(pi * pattern);
             sum += first_factor * second_factor;
         }
         return -sum;
