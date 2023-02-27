@@ -33,9 +33,9 @@ namespace integrals {
 
     template <class F>
     std::tuple<double, double, double> calculate_integral(F function, double abs_err, double rel_err,
-                              double x_start, double x_end, double y_start,
-                              double y_end, size_t init_steps_x,
-                              size_t init_steps_y, size_t max_iter) {
+                                                          double x_start, double x_end, double y_start,
+                                                          double y_end, size_t init_steps_x,
+                                                          size_t init_steps_y, size_t max_iter) {
 
         // first step: dividing an interval and computing
         // the initial value of the riemann sum over it
@@ -66,8 +66,8 @@ namespace integrals {
             steps_y *= 2;
         }
         while (fabs(second_riemann_sum - first_riemann_sum) < abs_err &&
-                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum) < rel_err ||
-                counter++ != max_iter);
+               fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum) < rel_err ||
+               counter++ != max_iter);
 
         return std::make_tuple(second_riemann_sum, fabs(second_riemann_sum - first_riemann_sum),
                                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum));
