@@ -45,9 +45,6 @@ namespace integrals {
         auto steps_y = init_steps_y;
         size_t counter = 0;
         do {
-            if (counter > max_iter) {
-                break;
-            }
             auto delta_x = (x_end - x_start) / (double)steps_x;
             auto delta_y = (y_end - y_start) / (double)steps_y;
 
@@ -69,7 +66,8 @@ namespace integrals {
             steps_y *= 2;
         }
         while (fabs(second_riemann_sum - first_riemann_sum) < abs_err &&
-                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum) < rel_err);
+                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum) < rel_err ||
+                counter++ != max_iter);
 
         return std::make_tuple(second_riemann_sum, fabs(second_riemann_sum - first_riemann_sum),
                                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum));
