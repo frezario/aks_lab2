@@ -3,11 +3,35 @@
 #include <exception>
 #include <functional>
 #include <cmath>
+#include <vector>
+#include <string>
 #include <fstream>
 #include <sstream>
 #include <chrono>
 #include <atomic>
 #include "integrals.h"
+
+namespace text_formatters {
+    // trim from start (in place)
+    static inline void ltrim(std::string &s) {
+        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+            return !std::isspace(ch);
+        }));
+    }
+
+// trim from end (in place)
+    static inline void rtrim(std::string &s) {
+        s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+            return !std::isspace(ch);
+        }).base(), s.end());
+    }
+
+// trim from both ends (in place)
+    static inline void trim(std::string &s) {
+        rtrim(s);
+        ltrim(s);
+    }
+}
 
 /*
  * Namespace for time measurement
@@ -74,11 +98,11 @@ namespace functions {
         auto sum = [m](double x) {
             double s = 0;
             for (size_t i = 0; i <= m; i++) {
-                s += (double)i * cos(((double)i + 1) * x + 1);
+                s += (double) i * cos(((double) i + 1) * x + 1);
             }
             return s;
         };
-        return -sum(x1)*sum(x2);
+        return -sum(x1) * sum(x2);
     }
 
 }
@@ -127,15 +151,16 @@ std::map<std::string, double> get_config(const std::string &file_name) {
     };
 
     for (auto &expr: expressions) {
-        if (expr[0] == '#') {
+        text_formatters::trim(expr);
+        expr.erase(std::remove_if(expr.begin(), expr.end(), [](char c) { return std::iswspace(c); }), expr.end());
+
+        if (expr.empty() || expr[0] == '#') {
             continue;
         }
-        expr.erase(std::remove(expr.begin(), expr.end(), ' '), expr.end());
-        expr.erase(std::remove(expr.begin(), expr.end(), '\r'), expr.end());
 
         // checking whether expression is correct
         if (!std::count(expr.begin(), expr.end(), '=')) {
-            std::string error_message = std::string("Error while parsing a line: ");
+            std::string error_message = std::string("Error while parsing a line: " + std::to_string((int) expr[0]));
             error_message.append(expr);
             throw std::logic_error(error_message);
         }
@@ -174,12 +199,12 @@ std::map<std::string, double> get_config(const std::string &file_name) {
         result[param] = value_parsed;
     }
 
-    // checking whether config properties are correct
+// checking whether config properties are correct
     if (result["x_start"] > result["x_end"] || result["y_start"] > result["y_end"]) {
         throw std::logic_error("Wrong bounds for x or y passed.");
     }
 
-    // all checks passed! closing the file and returning a map
+// all checks passed! closing the file and returning a map
 
     config_file.close();
     return result;
