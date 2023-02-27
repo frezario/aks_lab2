@@ -3,12 +3,10 @@
 #include <exception>
 #include <functional>
 #include <cmath>
-//#include <numbers>
 #include <fstream>
 #include <sstream>
 #include <chrono>
 #include <atomic>
-#include <array>
 #include "integrals.h"
 
 /*
@@ -33,7 +31,7 @@ namespace time_functions {
  * */
 namespace functions {
 
-    constexpr double pi = 3.14159265359;
+    constexpr double pi = 3.14159265358979323846;
 
     double f1(double x1, double x2) {
         double sum = 0.0;
@@ -92,12 +90,12 @@ namespace functions {
  * */
 std::vector<std::string> file_reader(std::ifstream &filestream) {
     std::vector<std::string> result;
-    std::string word;
-    while (std::getline(filestream, word)) {
-        if (word.empty() || word.find('=') == word.size()) {
+    std::string line;
+    while (std::getline(filestream, line)) {
+        if (line.empty() || line.find('=') == line.size()) {
             continue;
         }
-        result.push_back(word);
+        result.push_back(line);
     }
     return result;
 }
@@ -133,10 +131,11 @@ std::map<std::string, double> get_config(const std::string &file_name) {
             continue;
         }
         expr.erase(std::remove(expr.begin(), expr.end(), ' '), expr.end());
+        expr.erase(std::remove(expr.begin(), expr.end(), '\r'), expr.end());
 
         // checking whether expression is correct
         if (!std::count(expr.begin(), expr.end(), '=')) {
-            std::string error_message = std::string("Error while parsing a line ");
+            std::string error_message = std::string("Error while parsing a line: ");
             error_message.append(expr);
             throw std::logic_error(error_message);
         }
@@ -161,7 +160,7 @@ std::map<std::string, double> get_config(const std::string &file_name) {
         // checking whether the value of the parameter is correct number
         double value_parsed;
         try {
-            value_parsed = std::stoi(value);
+            value_parsed = std::stod(value);
         }
         catch (std::invalid_argument &) {
             std::string error_message = std::string("Invalid value ");

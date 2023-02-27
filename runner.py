@@ -5,13 +5,12 @@ from itertools import combinations
 
 
 def run_executable(func):
-    cmd = ["./integrate_serial", func, f"func{func}.cfg"]
-    result = subprocess.run(cmd, stdout=subprocess.PIPE)
+    cmd = ["./integrate_serial", f"func{func}.cfg", str(func)]
+    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout = result.stdout.decode("utf-8")
-    stderr = result.stderr.decode("utf-8")
     exit_code = result.returncode
     if exit_code != 0:
-        print(f"Error in {func} func:", stderr)
+        print(f"Error in {func} func:", result.stderr.decode("utf-8"))
         exit(exit_code)
     else:
         return stdout
