@@ -132,7 +132,7 @@ std::vector<std::string> file_reader(std::ifstream &filestream) {
 std::map<std::string, double> get_config(const std::string &file_name) {
     std::ifstream config_file(file_name);
     if (!config_file.is_open()) {
-        throw std::system_error();
+        throw std::runtime_error("");
     }
     // reading the content
     auto expressions = file_reader(config_file);
