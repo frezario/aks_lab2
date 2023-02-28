@@ -25,7 +25,7 @@ namespace integrals {
             for (size_t step_y = 0; step_y != steps_y; step_y++) {
                 auto value_of_func = function(x_start + (double)step_x * delta_x + shift_x,
                                               y_start + (double)step_y * delta_y + shift_y);
-                result += delta_x * delta_y * value_of_func;
+                result += value_of_func;
             }
         }
         return result;
@@ -49,7 +49,7 @@ namespace integrals {
             auto delta_y = (y_end - y_start) / (double)steps_y;
 
             if (counter == 0) {
-                first_riemann_sum = calculate_riemann_sum(function, x_start, x_end, y_start, y_end, steps_x, steps_y);
+                first_riemann_sum = delta_x * delta_y * calculate_riemann_sum(function, x_start, x_end, y_start, y_end, steps_x, steps_y);
             }
             else {
                 first_riemann_sum = second_riemann_sum;
@@ -61,7 +61,8 @@ namespace integrals {
                                                 steps_x, steps_y, 0, delta_y / 2);
             auto third = calculate_riemann_sum(function, x_start, x_end, y_start, y_end,
                                                steps_x, steps_y, delta_x / 2, delta_y / 2);
-            second_riemann_sum = 0.25 * (first_riemann_sum + first + second + third);
+            second_riemann_sum = 0.25 * (first_riemann_sum + delta_x * delta_y * (first + second + third));
+//            std::cout << second_riemann_sum << " " << counter << std::endl;
             steps_x *= 2;
             steps_y *= 2;
             counter++;
