@@ -20,14 +20,14 @@ python runner.py N
 
 ### Results
 
-Result for 10 repetitions with given in file example
+Result for 10 repetitions with given in file example with max iterations = 7:
 ```
 func| avarage time | min time |     sd    |
 ----|--------------|----------|-----------|
-  1 |              |          |           |
+  1 |    39493     |  38716   |    438    |
 ----|--------------|----------|-----------|
-  2 |              |          |           |
+  2 |     8342     |   8063   |    126    |
 ----|--------------|----------|-----------|
-  3 |              |          |           |
+  3 |    17175     |  16915   |    151    |
 ----|--------------|----------|-----------|
 ```
