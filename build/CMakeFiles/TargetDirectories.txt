@@ -1,3 +1,0 @@
-/mnt/c/Study/AKS/lab2_aks/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Study/AKS/lab2_aks/build/CMakeFiles/edit_cache.dir
-/mnt/c/Study/AKS/lab2_aks/build/CMakeFiles/integrate_serial.dir

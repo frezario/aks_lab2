@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++2a -O3 -DNDEBUG  -rdynamic CMakeFiles/integrate_serial.dir/main.cpp.o  -o integrate_serial 
