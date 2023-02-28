@@ -62,13 +62,14 @@ namespace integrals {
             auto third = calculate_riemann_sum(function, x_start, x_end, y_start, y_end,
                                                steps_x, steps_y, delta_x / 2, delta_y / 2);
             second_riemann_sum = 0.25 * (first_riemann_sum + first + second + third);
+            std::cout << second_riemann_sum << " " << counter << std::endl;
             steps_x *= 2;
             steps_y *= 2;
             counter++;
         }
-        while ((fabs(second_riemann_sum - first_riemann_sum) < abs_err &&
-                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum) < rel_err) &&
-                counter != max_iter);
+        while ((fabs(second_riemann_sum - first_riemann_sum) > abs_err &&
+                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum) > rel_err) ||
+                counter < max_iter);
 
         return std::make_tuple(second_riemann_sum, fabs(second_riemann_sum - first_riemann_sum),
                                fabs((second_riemann_sum - first_riemann_sum) / second_riemann_sum));
